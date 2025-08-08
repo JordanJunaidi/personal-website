@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap");
+
 /* CSS Variables for Color Palette */
 :root {
   --rich-black: #283044;
@@ -5,6 +7,9 @@
   --yinmn-blue: #bfa89e;
   --silver-lake-blue: #8b786d;
   --platinum: #ebf5ee;
+
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
 /* Reset and base styles */
@@ -26,6 +31,17 @@ body {
   line-height: 1.6;
   color: var(--platinum);
   background-color: var(--rich-black);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}
+
+p {
+  font-family: var(--font-body);
 }
 
 .App {
