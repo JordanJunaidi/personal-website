@@ -1,31 +1,70 @@
 import React, { useState } from "react";
 
+const WEB3FORMS_ACCESS_KEY = "379cabf9-8c2d-4b7c-b388-4d35bc78eebe"; // <- paste yours
+
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    website: "", // honeypot
   });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<null | "ok" | "error">(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+    setLoading(true);
+    setStatus(null);
+    setErrorMsg(null);
 
-    console.log("Form submitted:", formData);
+    try {
+      // basic bot trap
+      if (formData.website) {
+        setStatus("ok");
+        setLoading(false);
+        return;
+      }
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New Contact Form Submission - ${formData.name}`,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          from_name: "Jordan's Website",
+          from_email: "jorsan.jordan@gmail.com",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        throw new Error(data.message || "Failed to send");
+      }
+
+      setStatus("ok");
+      setFormData({ name: "", email: "", message: "", website: "" });
+    } catch (err: any) {
+      setStatus("error");
+      setErrorMsg(err?.message || "Something went wrong.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -64,43 +103,75 @@ const Contact: React.FC = () => {
               </a>
             </div>
           </div>
+
           <form className="contact-form" onSubmit={handleSubmit}>
+            {/* Honeypot (hidden) */}
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              autoComplete="off"
+              tabIndex={-1}
+              style={{ position: "absolute", left: "-5000px" }}
+              aria-hidden="true"
+            />
+
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input
-                type="text"
                 id="name"
                 name="name"
+                type="text"
+                required
                 value={formData.name}
                 onChange={handleChange}
-                required
+                disabled={loading}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
-                type="email"
                 id="email"
                 name="email"
+                type="email"
+                required
                 value={formData.email}
                 onChange={handleChange}
-                required
+                disabled={loading}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="message">Message</label>
               <textarea
                 id="message"
                 name="message"
-                value={formData.message}
-                onChange={handleChange}
                 rows={5}
                 required
-              ></textarea>
+                value={formData.message}
+                onChange={handleChange}
+                disabled={loading}
+              />
             </div>
-            <button type="submit" className="btn btn-primary">
-              Send Message
+
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={loading}
+            >
+              {loading ? "Sending..." : "Send Message"}
             </button>
+
+            {status === "ok" && (
+              <p style={{ marginTop: 12 }}>Thanks! Your message was sent.</p>
+            )}
+            {status === "error" && (
+              <p style={{ marginTop: 12, color: "crimson" }}>
+                Sorry, something went wrong. {errorMsg ? `(${errorMsg})` : ""}
+              </p>
+            )}
           </form>
         </div>
       </div>
