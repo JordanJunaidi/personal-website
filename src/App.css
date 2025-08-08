@@ -356,6 +356,8 @@ section {
 }
 
 .project-card {
+  display: flex;
+  flex-direction: column;
   background-color: var(--platinum);
   border-radius: 12px;
   overflow: hidden;
@@ -371,6 +373,9 @@ section {
 
 .project-content {
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .project-title {
@@ -465,6 +470,7 @@ section {
 /* Contact Section */
 .contact-section {
   background-color: var(--oxford-blue);
+  min-height: 100vh;
 }
 
 .contact-content {

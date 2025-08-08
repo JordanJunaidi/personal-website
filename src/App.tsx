@@ -6,16 +6,27 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
+import FadeInSection from "./components/FadeInSection";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Intro />
-      <AboutMe />
-      <Experience />
-      <Projects />
-      <Skills />
+      <FadeInSection>
+        <Intro />
+      </FadeInSection>
+      <FadeInSection once={true}>
+        <AboutMe />
+      </FadeInSection>
+      <FadeInSection>
+        <Experience />
+      </FadeInSection>
+      <FadeInSection>
+        <Projects />
+      </FadeInSection>
+      <FadeInSection>
+        <Skills />
+      </FadeInSection>
       <Contact />
     </div>
   );

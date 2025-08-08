@@ -1,4 +1,5 @@
 import React from "react";
+import FadeInSection from "./FadeInSection";
 
 interface ExperienceItem {
   id: number;
@@ -53,20 +54,22 @@ const Experience: React.FC = () => {
         <h2 className="section-title">Experience</h2>
         <div className="experience-timeline">
           {experiences.map((experience) => (
-            <div key={experience.id} className="experience-item">
-              <div className="experience-header">
-                <h3 className="experience-title">{experience.title}</h3>
-                <div className="experience-company">{experience.company}</div>
-                <div className="experience-period">{experience.period}</div>
+            <FadeInSection key={experience.id}>
+              <div className="experience-item">
+                <div className="experience-header">
+                  <h3 className="experience-title">{experience.title}</h3>
+                  <div className="experience-company">{experience.company}</div>
+                  <div className="experience-period">{experience.period}</div>
+                </div>
+                <div className="experience-description">
+                  <ul>
+                    {experience.description.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div className="experience-description">
-                <ul>
-                  {experience.description.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            </FadeInSection>
           ))}
         </div>
       </div>
