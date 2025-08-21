@@ -15,6 +15,21 @@ const Projects: React.FC = () => {
   const projects: Project[] = [
     {
       id: 1,
+      title: "Facial Recognition System",
+      description: "A Facial Recognition system using OpenCV and PyTorch",
+      technologies: [
+        "OpenCV",
+        "PyTorch",
+        "Pillow",
+        "NumPy",
+        "PostgreSQL",
+        "imgbeddings",
+        "psycopg2",
+      ],
+      githubUrl: "https://github.com/JordanJunaidi/facial-recognition",
+    },
+    {
+      id: 2,
       title: "AI Fitness Tracker",
       description:
         "An AI-Powered Fitness Tracker that utilizes Google MoveNet to track user's movements and provide feedback on their form and technique.",
@@ -30,7 +45,7 @@ const Projects: React.FC = () => {
       video: "https://devpost.com/software/form-fitness-pya478",
     },
     {
-      id: 2,
+      id: 3,
       title: "Quizski: Gamified Learning Platform",
       description:
         "A gamified flashcard-based learning platform where users can earn points by studying, which can then be used to trade in for prizes (Smiski) in order to make studying a much more engaging and rewarding experience!",
@@ -46,7 +61,7 @@ const Projects: React.FC = () => {
         "https://devpost.com/software/quizme-bjn8dk?_gl=1*1pwjgpu*_gcl_au*MTYxNTg2MTM2NS4xNzU0NjExNTk1*_ga*MTM1OTQwNjk2MS4xNzU0NjExNTk1*_ga_0YHJK3Y10M*czE3NTQ2MTE1OTQkbzEkZzEkdDE3NTQ2MTE2MTIkajQyJGwwJGgw",
     },
     {
-      id: 3,
+      id: 4,
       title: "Psyches of Color",
       description:
         "A mobile app built for non-profit organization Psyches of Color that is aimed at raising mental health awareness.",
