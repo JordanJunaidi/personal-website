@@ -117,7 +117,7 @@ const Projects: React.FC = () => {
                   )}
                   {project.video && (
                     <a
-                      href={project.liveUrl}
+                      href={project.video}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="project-link"

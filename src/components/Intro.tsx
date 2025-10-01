@@ -18,8 +18,25 @@ const Intro: React.FC = () => {
             create something amazing together.
           </p>
           <div className="intro-buttons">
-            <button className="btn btn-primary">View My Work</button>
-            <button className="btn btn-secondary">Get In Touch</button>
+            <button
+              className="btn btn-secondary"
+              onClick={() =>
+                window.open("https://www.github.com/JordanJunaidi", "_blank")
+              }
+            >
+              Github
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() =>
+                window.open(
+                  "https://www.linkedin.com/in/jordan-junaidi",
+                  "_blank"
+                )
+              }
+            >
+              LinkedIn
+            </button>
           </div>
         </div>
       </div>
