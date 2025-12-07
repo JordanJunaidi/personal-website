@@ -322,14 +322,14 @@ section {
 }
 
 .experience-title {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--silver-lake-blue);
   margin-bottom: 5px;
 }
 
 .experience-company {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: var(--silver-lake-blue);
   font-weight: 600;
   margin-bottom: 5px;

@@ -15,8 +15,18 @@ const Projects: React.FC = () => {
   const projects: Project[] = [
     {
       id: 1,
+      title: "Open Source Project Scaffolder",
+      description:
+        "Go-based CLI tool that scaffolds full-stack projects in minutes, automating repo creation, template setup, and GitHub configuration to streamline onboarding and development workflows.",
+      technologies: ["Go", "Cobra", "Survey", "GitHub API", "CLI"],
+      // TODO: Add your real repo link here
+      // githubUrl: "https://github.com/your-username/your-repo",
+    },
+    {
+      id: 2,
       title: "Facial Recognition System",
-      description: "A Facial Recognition system using OpenCV and PyTorch",
+      description:
+        "End-to-end facial recognition pipeline using deep embeddings, enabling face enrollment and lookup with persistent storage and a simple search interface for identity verification.",
       technologies: [
         "OpenCV",
         "PyTorch",
@@ -29,10 +39,10 @@ const Projects: React.FC = () => {
       githubUrl: "https://github.com/JordanJunaidi/facial-recognition",
     },
     {
-      id: 2,
+      id: 3,
       title: "AI Fitness Tracker",
       description:
-        "An AI-Powered Fitness Tracker that utilizes Google MoveNet to track user's movements and provide feedback on their form and technique.",
+        "AI-powered fitness tracker that uses Google MoveNet pose estimation to analyze user movements and provide real-time feedback on form and technique for common exercises.",
       technologies: [
         "React",
         "Flask",
@@ -45,10 +55,10 @@ const Projects: React.FC = () => {
       video: "https://devpost.com/software/form-fitness-pya478",
     },
     {
-      id: 3,
+      id: 4,
       title: "Quizski: Gamified Learning Platform",
       description:
-        "A gamified flashcard-based learning platform where users can earn points by studying, which can then be used to trade in for prizes (Smiski) in order to make studying a much more engaging and rewarding experience!",
+        "Gamified flashcard platform where students earn points by studying, unlock rewards, and generate AI-assisted flashcards to make exam prep more engaging and personalized.",
       technologies: [
         "React",
         "TypeScript",
@@ -61,10 +71,10 @@ const Projects: React.FC = () => {
         "https://devpost.com/software/quizme-bjn8dk?_gl=1*1pwjgpu*_gcl_au*MTYxNTg2MTM2NS4xNzU0NjExNTk1*_ga*MTM1OTQwNjk2MS4xNzU0NjExNTk1*_ga_0YHJK3Y10M*czE3NTQ2MTE1OTQkbzEkZzEkdDE3NTQ2MTE2MTIkajQyJGwwJGgw",
     },
     {
-      id: 4,
+      id: 5,
       title: "Psyches of Color",
       description:
-        "A mobile app built for non-profit organization Psyches of Color that is aimed at raising mental health awareness.",
+        "Mobile app built for non-profit Psyches of Color to promote mental health awareness through journaling, interactive activities, and a mobile-first experience designed for students of color.",
       technologies: [
         "React Native",
         "TypeScript",
