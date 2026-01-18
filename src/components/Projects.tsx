@@ -17,7 +17,7 @@ const Projects: React.FC = () => {
       id: 1,
       title: "Taco — Open Source Project Scaffolder",
       description:
-        "Contributed to an open-source Go CLI that scaffolds full-stack projects in under 3 minutes, improving developer workflow and setup speed. Implemented automated GitHub repo creation using Cobra flags + GitHub API, replacing manual configuration with a streamlined interactive CLI flow.",
+        "A Go CLI tool that gets full-stack projects up and running in under 3 minutes. I added automated GitHub repo creation—instead of manually setting things up, you just answer a few prompts and it handles the rest via the GitHub API.",
       technologies: ["Go", "Cobra", "Survey", "GitHub API"],
       githubUrl: "https://github.com/b-jonathan/taco"
     },
@@ -25,7 +25,7 @@ const Projects: React.FC = () => {
       id: 2,
       title: "AI Fitness Tracker",
       description:
-        "Integrated MoveNet-based CV algorithm to analyze exercise form in real time with 95% accuracy. Customized and deployed an LLM chatbot using Gemini API + system prompts to improve user engagement. Developed Flask backend with secure authentication + REST APIs to manage user data in MongoDB.",
+        "A fitness app that watches your form in real-time using computer vision. It uses MoveNet to track your body and flags when your form breaks down (95% accuracy). Also built an AI coach powered by Gemini that gives personalized feedback and tips.",
       technologies: ["TensorFlow", "MoveNet", "OpenCV", "Gemini API", "Flask", "React", "MongoDB"],
       githubUrl: "https://github.com/LAHacks25/form-fitness",
       video: "https://devpost.com/software/form-fitness-pya478",
@@ -34,9 +34,27 @@ const Projects: React.FC = () => {
       id: 3,
       title: "Facial Recognition System",
       description:
-        "Built facial recognition system using ML models (OpenAI CLIP) to embed face images into high-dimensional vectors, achieving 90%+ identity matching accuracy. Deployed PostgreSQL vector database (pgvector) for scalable similarity search + identity matching.",
+        "An identity matching system that converts faces into vector embeddings using OpenAI's CLIP model, then stores them in a PostgreSQL vector database for fast similarity search. Achieves 90%+ accuracy on identity matching.",
       technologies: ["OpenCV", "Python", "PyTorch", "NumPy", "PostgreSQL", "pgvector"],
       githubUrl: "https://github.com/JordanJunaidi/facial-recognition",
+    },
+    {
+      id: 4,
+      title: "Psyches of Color",
+      description:
+        "A mobile app built with a full team of developers and designers at Triton Software Engineering. The app helps destigmatize mental health in Black and Latinx communities through interactive activities, resources, and community support features.",
+      technologies: ["React Native", "Node.js", "Express.js", "MongoDB", "Firebase"],
+      githubUrl: "https://github.com/TritonSE/Psyches-Of-Color-App",
+      liveUrl: "https://psyches-of-color.vercel.app",
+    },
+    {
+      id: 5,
+      title: "Quizski",
+      description:
+        "A gamified study platform built in 24 hours at DiamondHacks (UCSD's annual hackathon). Students earn points by creating and studying flashcards, then spend them on a gacha system to collect Smiskis. Learning meets blind box addiction.",
+      technologies: ["React", "Node.js", "Express.js", "MongoDB", "Auth0", "Gemini API"],
+      githubUrl: "https://github.com/JordanJunaidi/Quizki",
+      liveUrl: "https://quizski.vercel.app",
     },
   ];
 

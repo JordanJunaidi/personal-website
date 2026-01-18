@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import self from "/self.png";
 
 const phrases = [
-  "CS @ UC San Diego",
+  "CS Student @ UC San Diego",
   "Software Engineer",
-  "AI/ML Enthusiast",
+  "Food Enthusiast",
+  "Video Game Enjoyer",
 ];
 
 const Intro: React.FC = () => {
