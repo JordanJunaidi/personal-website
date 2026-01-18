@@ -33,7 +33,7 @@ const Contact: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", // Replace with your Web3Forms key
+          access_key: "379cabf9-8c2d-4b7c-b388-4d35bc78eebe", // Replace with your Web3Forms key
           name: formData.name,
           email: formData.email,
           message: formData.message,
