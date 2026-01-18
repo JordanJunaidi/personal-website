@@ -4,6 +4,7 @@ import FadeInSection from "./FadeInSection";
 interface ExperienceItem {
   id: number;
   company: string;
+  location: string;
   roles: {
     title: string;
     period: string;
@@ -15,55 +16,48 @@ const Experience: React.FC = () => {
   const experiences: ExperienceItem[] = [
     {
       id: 1,
-      company: "Vibes Meet",
+      company: "Triton Software Engineering",
+      location: "San Diego, CA",
       roles: [
         {
-          title: "Software Engineering Intern",
-          period: "June 2025 - August 2025",
+          title: "Engineering Manager",
+          period: "Sept 2025 – Present",
           description: [
-            "Identified and resolved critical bugs across the entire stack, from React UI responsiveness and Django API errors to PostgreSQL query failures and CI/CD build issues, strengthening app stability and accelerating release cycles",
-            "Restored CI/CD pipeline just 1 hour before an important VC product demo by identifying and resolving a critical backend dependency conflict",
-            "Uploaded landing page video assets to an AWS S3 bucket, improving media scalability and availability while offloading bandwidth from application servers",
-            "Integrated a third-party exchange-rate API to support international currencies, ensuring a tailored user experience for 200+ active global users",
+            "Lead a team of 15 developers/designers building a full-stack web app visualizing relationships between nonprofit organizations for the David Brower Center",
+            "Collaborate in biweekly client meetings with PM + design lead to translate requirements into technical tasks and implementation plans",
           ],
         },
       ],
     },
     {
       id: 2,
-      company: "Triton Software Engineering",
+      company: "Vibes Meet",
+      location: "The Bronx, NY",
       roles: [
         {
-          title: "Engineering Manager",
-          period: "September 2025 - Present",
+          title: "Software Engineer Intern",
+          period: "June 2025 – Aug 2025",
           description: [
-            "Coordinated with executive board to execute fall recruitment drive, attracting 430+ applicants",
-            "Led weekly cross-functional team meetings, aligning developers and designers to ensure clear communication, project cohesion, and timely milestone delivery",
-          ],
-        },
-        {
-          title: "Full Stack Developer",
-          period: "November 2024 - September 2025",
-          description: [
-            "Developed a cross-platform mobile app pro bono for non-profit organization Psyches of Color focused on raising mental health awareness via interactive activities",
-            "Implemented a secure user authentication system using Firebase Auth",
-            "Built dynamic UI components and the sign-up flow based on Figma prototypes, integrating RESTful API endpoints for seamless backend integration",
-            "Created an animated carousel in React Native and TypeScript, incorporating ref-based scroll handling, custom animation interpolation and state management",
+            "Developed and maintained core features for a creator-focused social networking platform with 200+ global users",
+            "Resolved 20+ full-stack production issues (React, Django, PostgreSQL), reducing average resolution time by ~25%",
+            "Restored AWS Amplify CI/CD pipeline one hour before a VC demo, ensuring smooth product delivery",
+            "Built end-to-end event booking interface with authentication, checkout, and payment systems, accelerating product pivot by ~1 month",
+            "Built an interactive creator earnings map with city search + live pricing tooltips using OpenStreetMap + Leaflet/Mapbox, increasing visitor-to-creator conversion rate",
           ],
         },
       ],
     },
     {
       id: 3,
-      company: "Intel Corporation",
+      company: "Intel",
+      location: "Folsom, CA",
       roles: [
         {
-          title: "Graphics Architecture Intern",
-          period: "June 2022 - August 2022",
+          title: "High School Intern, Graphics Architecture Team",
+          period: "June 2022 – Aug 2022",
           description: [
-            "Utilized proprietary performance modeling tools to run graphics performance experiments, providing actionable insights to engineering teams for feature optimization",
-            "Measured and visualized the impact of cache configurations and ray-tracing features, supporting data-driven design decisions",
-            "Presented findings and recommendations with senior graphics architects, influencing the roadmap for next-generation GPU features",
+            "Conducted graphics performance experiments using proprietary modeling tools, delivering insights that guided feature optimization across engineering teams",
+            "Created Matplotlib visualizations to analyze cache configuration impact + ray-tracing performance metrics, supporting data-driven decisions for next-gen GPU architecture roadmap",
           ],
         },
       ],
@@ -73,16 +67,18 @@ const Experience: React.FC = () => {
   return (
     <section id="experience" className="experience-section">
       <div className="container">
-        <h2 className="section-title">Experience</h2>
+        <FadeInSection>
+          <h2 className="section-title">Experience</h2>
+        </FadeInSection>
         <div className="experience-timeline">
           {experiences.map((experience) => (
             <FadeInSection key={experience.id}>
               <div className="experience-item">
                 <div className="experience-header">
                   <h3 className="experience-company">{experience.company}</h3>
+                  <span className="experience-location">{experience.location}</span>
                 </div>
 
-                {/* Render each role inside the same box */}
                 {experience.roles.map((role, index) => (
                   <div key={index} className="experience-role">
                     <h4 className="experience-title">{role.title}</h4>

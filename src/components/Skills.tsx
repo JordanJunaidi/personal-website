@@ -1,4 +1,5 @@
 import React from "react";
+import FadeInSection from "./FadeInSection";
 
 interface SkillCategory {
   id: number;
@@ -12,47 +13,59 @@ const Skills: React.FC = () => {
       id: 1,
       name: "Languages",
       skills: [
-        "Java",
         "Python",
-        "C++",
-        "C",
-        "JavaScript",
+        "Go",
         "TypeScript",
-        "HTML",
-        "CSS",
+        "JavaScript",
+        "Java",
+        "C",
+        "C++",
         "SQL",
+        "HTML/CSS",
+        "MATLAB",
       ],
     },
     {
       id: 2,
-      name: "Frameworks",
+      name: "Web / Backend",
       skills: [
         "React",
         "React Native",
         "Next.js",
-        "Express.js",
         "Node.js",
-        "FastAPI",
         "Flask",
         "Django",
-        "TailwindCSS",
+        "Postman",
+        "PostgreSQL",
+        "NoSQL",
       ],
     },
     {
       id: 3,
-      name: "Tools & Others",
+      name: "AI / ML",
       skills: [
-        "PostgreSQL",
-        "MongoDB",
-        "supabase",
-        "Firebase",
+        "NumPy",
+        "pandas",
+        "Matplotlib",
+        "PyTorch",
+        "TensorFlow",
+        "OpenCV",
+        "seaborn",
+        "scikit-learn",
+      ],
+    },
+    {
+      id: 4,
+      name: "Infra / DevOps",
+      skills: [
         "Git",
-        "Postman",
-        "JUnit",
-        "Figma",
-        "Unix",
-        "MacOS",
-        "Windows",
+        "GitHub",
+        "Agile",
+        "Scrum",
+        "AWS Amplify",
+        "Vercel",
+        "CI/CD",
+        "Linux",
       ],
     },
   ];
@@ -60,19 +73,23 @@ const Skills: React.FC = () => {
   return (
     <section id="skills" className="skills-section">
       <div className="container">
-        <h2 className="section-title">Skills</h2>
+        <FadeInSection>
+          <h2 className="section-title">Skills</h2>
+        </FadeInSection>
         <div className="skills-grid">
           {skillCategories.map((category) => (
-            <div key={category.id} className="skill-category">
-              <h3 className="category-title">{category.name}</h3>
-              <div className="skills-list">
-                {category.skills.map((skill, index) => (
-                  <span key={index} className="skill-item">
-                    {skill}
-                  </span>
-                ))}
+            <FadeInSection key={category.id}>
+              <div className="skill-category">
+                <h3 className="category-title">{category.name}</h3>
+                <div className="skills-list">
+                  {category.skills.map((skill, index) => (
+                    <span key={index} className="skill-item">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </FadeInSection>
           ))}
         </div>
       </div>

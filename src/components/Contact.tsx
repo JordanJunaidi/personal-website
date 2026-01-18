@@ -1,178 +1,162 @@
 import React, { useState } from "react";
+import FadeInSection from "./FadeInSection";
 
-const WEB3FORMS_ACCESS_KEY = "379cabf9-8c2d-4b7c-b388-4d35bc78eebe"; // <- paste yours
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
-    website: "", // honeypot
   });
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<null | "ok" | "error">(null);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setStatus(null);
-    setErrorMsg(null);
+    setStatus("loading");
 
     try {
-      // basic bot trap
-      if (formData.website) {
-        setStatus("ok");
-        setLoading(false);
-        return;
-      }
-
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `New Contact Form Submission - ${formData.name}`,
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", // Replace with your Web3Forms key
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          from_name: "Jordan's Website",
-          from_email: "jorsan.jordan@gmail.com",
         }),
       });
 
-      const data = await res.json();
-
-      if (!data.success) {
-        throw new Error(data.message || "Failed to send");
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
       }
-
-      setStatus("ok");
-      setFormData({ name: "", email: "", message: "", website: "" });
-    } catch (err: any) {
+    } catch {
       setStatus("error");
-      setErrorMsg(err?.message || "Something went wrong.");
-      console.error(err);
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
     <section id="contact" className="contact-section">
       <div className="container">
-        <h2 className="section-title">Get In Touch</h2>
+        <FadeInSection>
+          <h2 className="section-title">Get in Touch</h2>
+          <p className="contact-intro">
+            I'm currently open to internship and full-time opportunities. 
+            Feel free to reach out!
+          </p>
+        </FadeInSection>
+
         <div className="contact-content">
-          <div className="contact-info">
-            <h3>Let's work together!</h3>
-            <p>
-              I'm always interested in new opportunities and exciting projects.
-              Feel free to reach out if you'd like to collaborate or just say
-              hello.
-            </p>
-            <div className="contact-details">
+          <FadeInSection>
+            <div className="contact-info">
               <div className="contact-item">
-                <strong>Email:</strong> jordanrjunaidi@gmail.com
+                <span className="contact-label">Email</span>
+                <a href="mailto:jordanrjunaidi@gmail.com" className="contact-value">
+                  jordanrjunaidi@gmail.com
+                </a>
+              </div>
+              <div className="contact-item">
+                <span className="contact-label">Phone</span>
+                <a href="tel:916-385-8235" className="contact-value">
+                  (916) 385-8235
+                </a>
+              </div>
+              <div className="contact-item">
+                <span className="contact-label">LinkedIn</span>
+                <a
+                  href="https://linkedin.com/in/jordan-junaidi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-value"
+                >
+                  linkedin.com/in/jordan-junaidi
+                </a>
+              </div>
+              <div className="contact-item">
+                <span className="contact-label">GitHub</span>
+                <a
+                  href="https://github.com/JordanJunaidi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-value"
+                >
+                  github.com/JordanJunaidi
+                </a>
               </div>
             </div>
-            <div className="social-links">
-              <a
-                href="https://github.com/JordanJunaidi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
+          </FadeInSection>
+
+          <FadeInSection>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="your@email.com"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Your message..."
+                  rows={5}
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={status === "loading"}
               >
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/jordan-junaidi/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
-
-          <form className="contact-form" onSubmit={handleSubmit}>
-            {/* Honeypot (hidden) */}
-            <input
-              type="text"
-              name="website"
-              value={formData.website}
-              onChange={handleChange}
-              autoComplete="off"
-              tabIndex={-1}
-              style={{ position: "absolute", left: "-5000px" }}
-              aria-hidden="true"
-            />
-
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                disabled={loading}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                disabled={loading}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows={5}
-                required
-                value={formData.message}
-                onChange={handleChange}
-                disabled={loading}
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={loading}
-            >
-              {loading ? "Sending..." : "Send Message"}
-            </button>
-
-            {status === "ok" && (
-              <p style={{ marginTop: 12 }}>Thanks! Your message was sent.</p>
-            )}
-            {status === "error" && (
-              <p style={{ marginTop: 12, color: "crimson" }}>
-                Sorry, something went wrong. {errorMsg ? `(${errorMsg})` : ""}
-              </p>
-            )}
-          </form>
+                {status === "loading" ? "Sending..." : "Send Message"}
+              </button>
+              {status === "success" && (
+                <p className="form-status success">Message sent successfully!</p>
+              )}
+              {status === "error" && (
+                <p className="form-status error">
+                  Something went wrong. Please try again.
+                </p>
+              )}
+            </form>
+          </FadeInSection>
         </div>
       </div>
     </section>

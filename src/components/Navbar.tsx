@@ -20,7 +20,6 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { id: "intro", label: "Home" },
     { id: "about", label: "About" },
     { id: "experience", label: "Experience" },
     { id: "projects", label: "Projects" },
@@ -32,7 +31,13 @@ const Navbar: React.FC = () => {
     <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         <div className="nav-logo">
-          <span className="logo-text">Jordan Junaidi</span>
+          <button 
+            className="logo-text" 
+            onClick={() => scrollToSection("intro")}
+            style={{ background: "none", border: "none", cursor: "pointer" }}
+          >
+            JJ
+          </button>
         </div>
         <ul className="nav-menu">
           {navItems.map((item) => (
